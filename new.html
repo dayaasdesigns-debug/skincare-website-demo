@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOLEYA | A ritual inspired by the Mediterranean</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#F4EBDD;--olive:#7B8053;--terra:#BD704D;--ochre:#D9B66F;--esp:#493A2F;--ivory2:#EBDFCB;--olive-d:#5C603C;--terra-d:#9C5636}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--esp);font:16px/1.65 'DM Sans',sans-serif}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.08}
+h1{font-size:clamp(3rem,7vw,5.8rem)}h2{font-size:clamp(2rem,4vw,3.2rem)}h3{font-size:1.6rem}
+p{max-width:60ch}a{color:inherit}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--terra-d);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+section{padding:clamp(56px,9vw,112px) 0}
+.btn{display:inline-block;background:var(--esp);color:var(--ivory);border:1.5px solid var(--esp);padding:14px 28px;border-radius:999px;text-decoration:none;font-weight:500;transition:background .2s,color .2s}
+.btn:hover{background:var(--terra-d);border-color:var(--terra-d)}
+.btn.ghost{background:transparent;color:var(--esp)}.btn.ghost:hover{background:var(--esp);color:var(--ivory)}
+.btn.full{width:100%;text-align:center}
+.bar{background:var(--olive-d);color:var(--ivory);text-align:center;padding:9px 16px;font-size:.9rem}
+header{position:sticky;top:0;z-index:20;background:rgba(244,235,221,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(73,58,47,.15)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;letter-spacing:.18em;text-decoration:none}
+.links,.tools{display:flex;gap:28px;align-items:center}
+.links a,.tools button{text-decoration:none;background:none;border:0;padding:4px 0}
+.links a:hover,.tools button:hover{color:var(--terra-d)}
+.dd{position:relative}
+.dd-menu{position:absolute;top:100%;left:-16px;background:var(--ivory);border:1px solid rgba(73,58,47,.18);padding:12px 8px;min-width:190px;display:none;border-radius:6px}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{display:block}
+.dd-menu a{display:block;padding:7px 14px}
+.count{background:var(--terra-d);color:#fff;border-radius:99px;font-size:.75rem;padding:1px 7px;margin-left:4px}
+.menu-btn{display:none}
+#searchbar{display:none;border-top:1px solid rgba(73,58,47,.15);padding:14px 0}
+#searchbar.open{display:block}
+input,select{font:inherit;color:inherit;background:#fbf6ec;border:1.5px solid rgba(73,58,47,.35);border-radius:999px;padding:11px 20px;width:100%}
+.hero{padding:0}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:640px}
+.hero-text{display:flex;flex-direction:column;justify-content:center;gap:26px;padding:72px clamp(20px,5vw,72px) 72px max(20px,calc((100vw - 1240px)/2 + 48px))}
+.hero-art{background:linear-gradient(180deg,#E9C98A 0%,#D9B66F 45%,#BD704D 100%);position:relative;overflow:hidden}
+.sun{position:absolute;width:260px;height:260px;border-radius:50%;background:#F4EBDD;opacity:.85;top:15%;right:18%}
+.sea{position:absolute;left:0;right:0;bottom:0;height:34%;background:var(--olive)}
+.sea::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(244,235,221,.18) 0 2px,transparent 2px 22px)}
+.hero-art svg.branch{position:absolute;left:-30px;top:-10px;width:70%;opacity:.9}
+.hero-art .bottle{position:absolute;left:34%;bottom:12%;width:150px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:40px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.card{display:flex;flex-direction:column;gap:12px}
+.thumb{aspect-ratio:4/5;border-radius:6px 6px 120px 120px;display:flex;align-items:flex-end;justify-content:center;position:relative;overflow:hidden;text-decoration:none}
+.thumb svg{width:46%;margin-bottom:9%}
+.heart{position:absolute;top:14px;right:14px;background:rgba(244,235,221,.9);border:0;border-radius:50%;width:40px;height:40px;font-size:1.2rem;line-height:1}
+.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}.gal .main{position:relative}.jgrid .jimg{position:relative;overflow:hidden}.heart{z-index:3}
+.heart[aria-pressed=true]{color:var(--terra-d)}
+.card h3{font-size:1.5rem}.meta{color:#6b5a4b;font-size:.92rem}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.price{font-weight:600}
+.small{padding:9px 18px;font-size:.9rem}
+.story{background:var(--ivory2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,88px);align-items:center}
+.photo{aspect-ratio:1/1.05;border-radius:200px 200px 8px 8px;background:linear-gradient(160deg,var(--olive) 0%,#9a9e6e 55%,var(--ochre) 100%);position:relative;overflow:hidden}
+.photo::after{content:"";position:absolute;width:55%;aspect-ratio:1;border-radius:50%;background:var(--terra);right:-8%;bottom:-8%;opacity:.9}
+.ing{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.ing div{border-top:2px solid var(--terra);padding-top:18px}
+.ing p{margin-top:8px}
+.jgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.jgrid article{display:flex;flex-direction:column;gap:12px}
+.jgrid .jimg{aspect-ratio:3/2;border-radius:6px}
+.news{background:var(--esp);color:var(--ivory);text-align:center}
+.news .wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
+.news form{display:flex;gap:10px;width:min(480px,100%)}
+.news input{background:var(--ivory);color:var(--esp)}
+.news .btn{background:var(--ochre);color:var(--esp);border-color:var(--ochre);white-space:nowrap}
+footer{background:var(--ivory2);padding:64px 0 32px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
+footer h4{font-family:'DM Sans';font-size:1rem;font-weight:600;margin-bottom:12px}
+footer a{display:block;text-decoration:none;padding:3px 0}footer a:hover{color:var(--terra-d)}
+.legal{margin-top:40px;font-size:.85rem;color:#6b5a4b}
+.page-head{padding:64px 0 24px}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:20px 0 36px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--esp);background:transparent;border-radius:999px;padding:8px 18px}
+.chip[aria-pressed=true]{background:var(--esp);color:var(--ivory)}
+.filters select{width:auto;padding-right:36px}
+.pdp{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,6vw,80px);padding:48px 0 96px}
+.gal{display:grid;gap:14px}
+.gal .main{aspect-ratio:1;border-radius:8px;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.gal .main svg{width:42%;margin-bottom:8%}
+.gal .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gal .thumbs button{aspect-ratio:1;border:2px solid transparent;border-radius:6px;padding:0;overflow:hidden}
+.gal .thumbs button[aria-pressed=true]{border-color:var(--esp)}
+.info{display:flex;flex-direction:column;gap:20px}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--esp);border-radius:999px}
+.qty button{background:none;border:0;width:42px;height:42px;font-size:1.2rem}
+.qty span{min-width:30px;text-align:center}
+details{border-top:1px solid rgba(73,58,47,.25);padding:14px 0}
+details:last-of-type{border-bottom:1px solid rgba(73,58,47,.25)}
+summary{cursor:pointer;font-weight:500}
+details p{margin-top:8px}
+.crumb{font-size:.9rem;color:#6b5a4b;padding-top:28px}
+.crumb a{text-decoration:none}
+#drawer{position:fixed;inset:0 0 0 auto;width:min(440px,100%);background:var(--ivory);z-index:40;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(73,58,47,.25)}
+#drawer.open{transform:none}
+#scrim{position:fixed;inset:0;background:rgba(73,58,47,.45);z-index:30;display:none}
+#scrim.open{display:block}
+.d-head,.d-foot{padding:20px 24px;display:flex;justify-content:space-between;align-items:center}
+.d-head{border-bottom:1px solid rgba(73,58,47,.2)}
+.d-foot{border-top:1px solid rgba(73,58,47,.2);flex-direction:column;align-items:stretch;gap:12px}
+.d-body{flex:1;overflow:auto;padding:8px 24px}
+.line{display:grid;grid-template-columns:72px 1fr auto;gap:14px;padding:16px 0;border-bottom:1px solid rgba(73,58,47,.15);align-items:center}
+.line .th{width:72px;height:88px;border-radius:4px 4px 36px 36px;display:flex;align-items:flex-end;justify-content:center}
+.line .th svg{width:46%;margin-bottom:8%}
+.line .qty button{width:30px;height:30px}
+.rm{background:none;border:0;text-decoration:underline;font-size:.85rem;padding:0}
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:var(--esp);color:var(--ivory);padding:12px 22px;border-radius:999px;z-index:50;transition:transform .3s}
+#toast.show{transform:translate(-50%,0)}
+.empty{padding:48px 0;text-align:center}
+.narrow{max-width:700px}
+.auth-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.form{display:grid;gap:16px;padding:32px;border:1px solid rgba(73,58,47,.18);border-radius:12px;background:var(--ivory2)}
+.form label{display:grid;gap:7px;font-weight:500}
+.form input{border-radius:8px}
+.auth-switch{display:flex;gap:8px;margin-bottom:20px}
+.auth-switch button{flex:1;border:1.5px solid var(--esp);background:transparent;border-radius:999px;padding:9px 16px}
+.auth-switch button[aria-pressed=true]{background:var(--esp);color:var(--ivory)}
+.account-card{border-top:1.5px solid var(--esp);padding:24px 0}
+.account-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(32px,6vw,72px);padding:32px 0 96px}
+.account-menu{display:grid;align-content:start;gap:8px}
+.account-menu button{border:0;border-bottom:1px solid rgba(73,58,47,.18);background:transparent;text-align:left;padding:14px 0}
+.avatar{width:72px;height:72px;border-radius:50%;background:var(--terra);color:var(--ivory);display:grid;place-items:center;font-family:'Cormorant Garamond';font-size:2rem}
+.checkout-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);padding-bottom:96px;align-items:start}
+.checkout-summary{background:var(--ivory2);border-radius:12px;padding:clamp(20px,3vw,32px)}
+.checkout-summary h2{margin-bottom:20px}
+.checkout-items{display:grid;gap:16px;margin-bottom:24px}
+.checkout-item{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center}
+.checkout-thumb{width:72px;height:88px;object-fit:cover;border-radius:4px 4px 36px 36px}
+.checkout-total{border-top:1px solid rgba(73,58,47,.25);padding-top:16px}
+@media(max-width:960px){
+.grid{grid-template-columns:repeat(2,1fr)}.hero-grid,.split,.pdp{grid-template-columns:1fr}
+.account-grid,.auth-grid,.checkout-grid{grid-template-columns:1fr}
+.hero-text{padding:56px 20px}.hero-art{min-height:420px}.ing,.jgrid{grid-template-columns:1fr}
+.fgrid{grid-template-columns:1fr 1fr}
+.links{display:none;position:absolute;top:72px;left:0;right:0;background:var(--ivory);flex-direction:column;align-items:flex-start;padding:20px;gap:14px;border-bottom:1px solid rgba(73,58,47,.2)}
+.links.open{display:flex}.menu-btn{display:block}
+.dd-menu{display:block;position:static;border:0;padding:0 0 0 12px}
+}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.news form{flex-direction:column}.fgrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="bar">Free shipping on orders over $50. New: Golden Hour Oil is back in stock.</div>
+<header>
+  <div class="wrap nav">
+    <button class="menu-btn tools" id="menuBtn" aria-label="Menu" aria-expanded="false" style="background:none;border:0;font-size:1.5rem">☰</button>
+    <nav class="links" id="links" aria-label="Main">
+      <div class="dd"><a href="#/shop">Shop</a>
+        <div class="dd-menu">
+          <a href="#/shop">Shop all</a><a href="#/shop/Cleanse">Cleansers</a><a href="#/shop/Treat">Serums</a><a href="#/shop/Moisturize">Moisturizers</a><a href="#/shop/Body">Body</a>
+        </div></div>
+      <a href="#/story">Our Story</a><a href="#/journal">Journal</a>
+    </nav>
+    <a class="logo" href="#/">SOLEYA</a>
+    <div class="tools">
+      <button id="searchBtn" aria-label="Search">Search</button>
+      <button id="accountBtn" aria-label="Account">Account</button>
+      <button id="bagBtn" aria-label="Open shopping bag">Bag<span class="count" id="count">0</span></button>
+    </div>
+  </div>
+  <div id="searchbar"><div class="wrap"><input id="q" type="search" placeholder="Search cleanser, serum, oil…" aria-label="Search products"></div></div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><div class="logo" style="font-size:1.6rem">SOLEYA</div><p style="margin-top:10px">A ritual inspired by the Mediterranean.</p></div>
+      <div><h4>Shop</h4><a href="#/shop">All products</a><a href="#/shop/Cleanse">Cleansers</a><a href="#/shop/Body">Body</a></div>
+      <div><h4>Help</<a href="#/contact">Contact and FAQ</a>s
+    </div>
+    <p class="legal">All products and formulations are fictional design concepts. © 2026 SOLEYA.</p>
+  </div>
+</footer>
+
+<div id="scrim"></div>
+<aside id="drawer" aria-label="Shopping bag" aria-hidden="true">
+  <div class="d-head"><h3>Your bag</h3><button class="rm" id="closeBag">Close</button></div>
+  <div class="d-body" id="lines"></div>
+  <div class="d-foot"><div class="row"><span>Subtotal</span><strong id="sub">$0</strong></div>
+    <button class="btn full" id="checkout">Continue to checkout</button></div>
+</aside>
+<div id="toast" role="status"></div>
+
+<script>
+const P=[
+{id:'olive-cleanse',name:'Olive Cleanse',cat:'Cleanse',type:'Gentle daily facial cleanser',size:'150 ml',price:22,bg:'#C9CB9A',cap:'#7B8053',best:4,desc:'A soft, low-foam gel that lifts the day away without leaving skin tight. Cold-pressed olive and chamomile keep it calm.',ings:'Olive fruit extract, chamomile, aloe vera, glycerin.',use:'Massage onto damp skin morning and night, then rinse with lukewarm water.'},
+{id:'sunlit-serum',name:'Sunlit Serum',cat:'Treat',type:'Hydrating facial serum',size:'30 ml',price:34,bg:'#EBCB86',cap:'#BD704D',best:1,desc:'A light, glowing serum with bitter orange and hyaluronic acid that plumps skin and leaves it luminous.',ings:'Bitter orange extract, hyaluronic acid, vitamin E, jojoba.',use:'Press 3 drops into clean skin before moisturizer.'},
+{id:'coastal-cream',name:'Coastal Cream',cat:'Moisturize',type:'Daily moisturizing cream',size:'50 ml',price:29,bg:'#E2B79E',cap:'#7B8053',best:2,desc:'A cushiony daily cream with sea fennel and shea butter. It seals in moisture and sits comfortably under sunscreen.',ings:'Sea fennel, shea butter, squalane, fig leaf extract.',use:'Smooth over face and neck each morning and evening.'},
+{id:'golden-hour-oil',name:'Golden Hour Oil',cat:'Body',type:'Nourishing body oil',size:'100 ml',price:26,bg:'#D9B66F',cap:'#493A2F',best:3,desc:'A dry-finish body oil with sweet almond and calendula. Warm, sunlit and quick to absorb.',ings:'Sweet almond oil, calendula, sunflower oil, citrus peel.',use:'Warm a few drops between palms and smooth over damp skin after bathing.'}];
+const J=[['Why olive oil has always belonged in a beauty routine','Five minute read',0],['Building a three step ritual you will keep','Four minute read',1],['A guide to bitter orange, from grove to bottle','Six minute read',2]];
+const $=s=>document.querySelector(s);
+let cart=JSON.parse('[]'),wish=new Set(),query='';
+const USERS_KEY='soleya_users',SESSION_KEY='soleya_session';
+let users=JSON.parse(localStorage.getItem(USERS_KEY)||'[]');
+let currentUser=users.find(u=>u.id===localStorage.getItem(SESSION_KEY))||null;
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const randomBytes=()=>crypto.getRandomValues(new Uint8Array(16));
+const bytesToHex=b=>Array.from(b).map(x=>x.toString(16).padStart(2,'0')).join('');
+async function passwordHash(password,salt){
+ const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']);
+ const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt:new Uint8Array(salt.match(/.{2}/g).map(x=>parseInt(x,16))),iterations:100000,hash:'SHA-256'},key,256);
+ return bytesToHex(new Uint8Array(bits));
+}
+function saveUsers(){localStorage.setItem(USERS_KEY,JSON.stringify(users))}
+function updateAccountButton(){
+ $('#accountBtn').textContent=currentUser?currentUser.name.split(' ')[0]: 'Account';
+}
+const money=n=>'$'+n;
+const bottle=(c,w)=>`<svg viewBox="0 0 60 120" aria-hidden="true"><rect x="22" y="2" width="16" height="14" rx="2" fill="${c}"/><rect x="26" y="14" width="8" height="8" fill="#493A2F"/><rect x="8" y="22" width="44" height="94" rx="10" fill="#7a4a24" opacity=".92"/><rect x="14" y="52" width="32" height="40" rx="2" fill="#F4EBDD"/><text x="30" y="68" font-size="7" text-anchor="middle" font-family="serif" letter-spacing="1.2" fill="#493A2F">SOLEYA</text><line x1="20" y1="74" x2="40" y2="74" stroke="#BD704D"/><text x="30" y="84" font-size="4.6" text-anchor="middle" fill="#493A2F" font-family="sans-serif">${w||''}</text></svg>`;
+const card=p=>`<article class="card"><a class="thumb" href="#/p/${p.id}" style="background:${p.bg}" aria-label="${p.name}">${bottle(p.cap,p.size)}<img class="ph" src="images/${p.id}.png" alt="${p.name}" loading="lazy" onerror="this.remove()">
+<button class="heart" aria-label="Save ${p.name}" aria-pressed="${wish.has(p.id)}" data-w="${p.id}">${wish.has(p.id)?'♥':'♡'}</button></a>
+<div><h3>${p.name}</h3><p class="meta">${p.type}, ${p.size}</p></div>
+<div class="row"><span class="price">${money(p.price)}</span><button class="btn small" data-add="${p.id}">Add to bag</button></div></article>`;
+const branch=`<svg class="branch" viewBox="0 0 300 200" aria-hidden="true"><path d="M0 40 C90 50 170 80 290 170" fill="none" stroke="#493A2F" stroke-width="2.5"/>${[40,80,120,160,200,240].map((x,i)=>`<ellipse cx="${x}" cy="${46+i*20+(i%2?14:-14)}" rx="26" ry="8" transform="rotate(${i%2?35:-20} ${x} ${46+i*20})" fill="#5C603C"/>`).join('')}</svg>`;
+
+const views={
+home(){return `
+<section class="hero"><div class="hero-grid">
+ <div class="hero-text"><h1>A ritual inspired by the Mediterranean.</h1>
+ <p>Skincare shaped by olive groves, citrus orchards and the slow, sunlit way of living on the coast. Simple formulas, honest botanicals, a few minutes for yourself.</p>
+ <div class="cta-row"><a class="btn" href="#/shop">Explore the collection</a><a class="btn ghost" href="#/story">Read our story</a></div></div>
+ <div class="hero-art"><img class="ph" src="images/hero.png" alt="SOLEYA Mediterranean skincare collection" onerror="this.remove()"><div class="sun"></div>${branch}<div class="sea"></div><div class="bottle">${bottle('#BD704D','30 ml')}</div></div></div></section>
+<section><div class="wrap"><div class="sec-head"><h2>Bestsellers</h2><a href="#/shop">View all products</a></div>
+ <div class="grid">${[...P].sort((a,b)=>a.best-b.best).map(card).join('')}</div></div></section>
+<section class="story"><div class="wrap split"><div class="photo"><img class="ph" src="images/story.png" alt="SOLEYA skincare story" loading="lazy" onerror="this.remove()"></div>
+ <div style="display:grid;gap:20px"><h2>Made slowly, in small batches.</h2>
+ <p>SOLEYA began with a grandmother’s kitchen shelf: olive oil, orange peel, a jar of honey. We kept the rituals and refined the formulas, so every product feels familiar and works hard.</p>
+ <div><a class="btn ghost" href="#/story">Our story</a></div></div></div></section>
+<section><div class="wrap"><h2 style="margin-bottom:40px">Ingredients from the grove</h2>
+ <div class="ing"><div><h3>Olive</h3><p>Cold-pressed for softness, rich in antioxidants and gentle on every skin type.</p></div>
+ <div><h3>Bitter orange</h3><p>Bright, vitamin-rich and glow-giving. Hand picked at the peak of the season.</p></div>
+ <div><h3>Sea fennel</h3><p>A coastal herb that helps skin hold on to moisture through hot, dry days.</p></div></div></div></section>
+<section class="story"><div class="wrap"><div class="sec-head"><h2>From the journal</h2><a href="#/journal">All articles</a></div>
+ <div class="jgrid">${J.map(j=>`<article><div class="jimg" style="background:${['#C9CB9A','#E2B79E','#EBCB86'][j[2]]}"><img class="ph" src="images/journal-${j[2]+1}.png" alt="" onerror="this.remove()"></div><h3>${j[0]}</h3><p class="meta">${j[1]}</p></article>`).join('')}</div></div></section>
+<section class="news"><div class="wrap"><h2>Join the ritual</h2><p>Get seasonal skincare notes and 10% off your first order.</p>
+ <form id="nl"><input type="email" required placeholder="Email address" aria-label="Email address"><button class="btn">Subscribe</button></form></div></section>`},
+shop(cat){
+ const list=()=>{let l=P.filter(p=>(!cat||p.cat===cat)&&(p.name+p.type+p.cat).toLowerCase().includes(query.toLowerCase()));
+  const s=$('#sort')?.value||'feat';
+  if(s==='lo')l.sort((a,b)=>a.price-b.price);if(s==='hi')l.sort((a,b)=>b.price-a.price);if(s==='az')l.sort((a,b)=>a.name.localeCompare(b.name));
+  return l.length?l.map(card).join(''):`<div class="empty" style="grid-column:1/-1"><h3>No matches</h3><p style="margin:8px auto 16px">Try a different word or clear the search.</p><a class="btn ghost" href="#/shop" onclick="query='';$('#q').value=''">Show all products</a></div>`};
+ setTimeout(()=>{$('#sort').onchange=()=>$('#list').innerHTML=list();window.relist=()=>$('#list').innerHTML=list()},0);
+ return `<div class="wrap"><div class="page-head"><h1 style="font-size:clamp(2.6rem,5vw,4rem)">${cat?({Cleanse:'Cleansers',Treat:'Serums',Moisturize:'Moisturizers',Body:'Body'})[cat]:'Shop all'}</h1></div>
+ <div class="filters"><div class="chips">${[['','All'],['Cleanse','Cleansers'],['Treat','Serums'],['Moisturize','Moisturizers'],['Body','Body']].map(c=>`<button class="chip" aria-pressed="${(cat||'')===c[0]}" onclick="location.hash='#/shop${c[0]?'/'+c[0]:''}'">${c[1]}</button>`).join('')}</div>
+ <label>Sort by <select id="sort"><option value="feat">Featured</option><option value="lo">Price, low to high</option><option value="hi">Price, high to low</option><option value="az">Name, A to Z</option></select></label></div>
+ <div class="grid" id="list" style="padding-bottom:96px">${list()}</div></div>`},
+p(id){const p=P.find(x=>x.id===id);if(!p)return views.shop();
+ setTimeout(()=>{let n=1;const set=()=>$('#qn').textContent=n;
+  $('#minus').onclick=()=>{n=Math.max(1,n-1);set()};$('#plus').onclick=()=>{n=Math.min(10,n+1);set()};
+  $('#addq').onclick=()=>add(p.id,n);
+  document.querySelectorAll('.thumbs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.thumbs button').forEach(x=>x.setAttribute('aria-pressed',x===b));$('.gal .main').style.background=b.dataset.bg})},0);
+ const bgs=[p.bg,p.cap==='#493A2F'?'#EBDFCB':'#EBDFCB','#C9CB9A'];
+ return `<div class="wrap"><p class="crumb"><a href="#/shop">Shop</a> / <a href="#/shop/${p.cat}">${p.cat==='Treat'?'Serums':p.cat}</a> / ${p.name}</p>
+ <div class="pdp"><div class="gal"><div class="main" style="background:${p.bg}">${bottle(p.cap,p.size)}<img class="ph" src="images/${p.id}.png" alt="${p.name}" onerror="this.remove()"></div>
+  <div class="thumbs">${bgs.map((b,i)=>`<button aria-label="View ${i+1}" aria-pressed="${i===0}" data-bg="${b}" style="background:${b}"></button>`).join('')}</div></div>
+ <div class="info"><h1 style="font-size:clamp(2.6rem,5vw,4rem)">${p.name}</h1><p class="meta">${p.type}, ${p.size}</p>
+  <p class="price" style="font-size:1.5rem">${money(p.price)}</p><p>${p.desc}</p>
+  <div class="row" style="justify-content:flex-start;gap:14px"><div class="qty"><button id="minus" aria-label="Decrease quantity">−</button><span id="qn">1</span><button id="plus" aria-label="Increase quantity">+</button></div>
+   <button class="btn" id="addq" style="flex:1">Add to bag</button>
+   <button class="heart" style="position:static;border:1.5px solid var(--esp)" data-w="${p.id}" aria-pressed="${wish.has(p.id)}" aria-label="Save ${p.name}">${wish.has(p.id)?'♥':'♡'}</button></div>
+  <div><details open><summary>Ingredients</summary><p>${p.ings}</p></details><details><summary>How to use</summary><p>${p.use}</p></details><details><summary>Shipping and returns</summary><p>Ships in 1 to 2 days. Free over $50. Return within 30 days.</p></details></div></div></div>
+ <section style="padding-top:0"><h2 style="margin-bottom:28px">Pairs well with</h2><div class="grid">${P.filter(x=>x.id!==id).slice(0,4).map(card).join('')}</div></section></div>`},
+checkout(){
+ if(!cart.length)return `<div class="wrap narrow"><div class="page-head"><h1>Checkout</h1><p>Your bag is empty.</p></div><a class="btn" href="#/shop">Explore the collection</a></div>`;
+ const subtotal=cart.reduce((sum,l)=>sum+l.n*P.find(p=>p.id===l.id).price,0);
+ const items=cart.map(l=>{const p=P.find(x=>x.id===l.id);return `<div class="checkout-item"><img class="checkout-thumb" src="images/${p.id}.png" alt="${p.name}" loading="lazy" onerror="this.remove()"><div><strong>${p.name}</strong><div class="meta">${l.n} × ${money(p.price)}</div></div><strong>${money(p.price*l.n)}</strong></div>`}).join('');
+ return `<div class="wrap"><div class="page-head"><h1>Checkout</h1><p>Review your order and enter your delivery details.</p></div>
+ <div class="checkout-grid"><form id="checkoutForm" class="form"><h2>Delivery details</h2>
+ <label>Full name<input name="name" autocomplete="name" required></label>
+ <label>Email<input name="email" type="email" autocomplete="email" required></label>
+ <label>Address<input name="address" autocomplete="street-address" required></label>
+ <label>City<input name="city" autocomplete="address-level2" required></label>
+ <label>Postal code<input name="postalCode" autocomplete="postal-code" required></label>
+ <button class="btn full">Continue</button><p class="meta">Demo checkout only. Payment processing is not connected.</p></form>
+ <aside class="checkout-summary"><h2>Your order</h2><div class="checkout-items">${items}</div>
+ <div class="row checkout-total"><strong>Subtotal</strong><strong>${money(subtotal)}</strong></div></aside></div></div>`;
+},
+contact(){return `<div class="wrap narrow"><div class="page-head"><h1 ${H1}>Contact and FAQ</h1></div>
+<form class="form" onsubmit="event.preventDefault();this.reset();toast('Message sent. We reply within 2 days.')">
+<label>Name<input required></label>
+<label>Email<input type="email" required></label>
+<label>Message<textarea required rows="5" style="font:inherit;padding:12px;border-radius:10px;border:1.5px solid rgba(73,58,47,.35);background:#fbf6ec"></textarea></label>
+<button class="btn full">Send message</button></form>
+<h2 style="margin:56px 0 16px">Questions</h2>
+<details open><summary>How long does shipping take?</summary><p>Orders ship in 1 to 2 days and arrive in 3 to 5.</p></details>
+<details><summary>Can I return a product?</summary><p>Yes, within 30 days of delivery.</p></details>
+<details><summary>Is SOLEYA suitable for sensitive skin?</summary><p>Our formulas are gentle, but always patch test first.</p></details></div>`},story(){return `<div class="wrap"><div class="page-head"><h1>Our story</h1></div><div class="split" style="padding-bottom:96px"><div class="photo"><img class="ph" src="images/story.png" alt="SOLEYA skincare story" onerror="this.remove()"></div><div style="display:grid;gap:18px"><p>SOLEYA draws on the Mediterranean way of caring for skin: simple, seasonal and shared. Olive oil for softness, citrus for brightness, sea herbs for resilience.</p><p>We make each formula in small batches, keep the lists short, and package everything in amber glass to protect what is inside.</p><div><a class="btn" href="#/shop">Explore the collection</a></div></div></div></div>`},
+journal(){return `<div class="wrap"><div class="page-head"><h1>Skincare journal</h1></div><div class="jgrid" style="padding-bottom:96px">${J.map(j=>`<article><div class="jimg" style="background:${['#C9CB9A','#E2B79E','#EBCB86'][j[2]]}"><img class="ph" src="images/journal-${j[2]+1}.png" alt="" onerror="this.remove()"></div><h3>${j[0]}</h3><p class="meta">${j[1]}</p></article>`).join('')}</div></div>`},
+account(){
+ if(!currentUser)return `<div class="wrap narrow"><div class="page-head"><h1>Welcome to SOLEYA</h1><p>Sign in or create an account.</p></div>
+ <div class="auth-switch"><button id="showLogin" aria-pressed="true">Sign in</button><button id="showRegister" aria-pressed="false">Create account</button></div>
+ <div class="auth-grid">
+  <form id="loginForm" class="form"><h2>Sign in</h2><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="password" type="password" autocomplete="current-password" minlength="6" required></label><button class="btn full">Sign in</button></form>
+  <form id="registerForm" class="form" hidden><h2>Create account</h2><label>Name<input name="name" autocomplete="name" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="password" type="password" autocomplete="new-password" minlength="6" required></label><button class="btn full">Create account</button></form>
+ </div></div>`;
+ const u=currentUser,initial=u.name.trim().charAt(0).toUpperCase();
+ return `<div class="wrap"><div class="page-head"><h1>Your account</h1></div><div class="account-grid">
+ <aside class="account-menu"><div class="avatar">${initial}</div><strong>${esc(u.name)}</strong><span class="meta">${esc(u.email)}</span><button id="accountProfile">Profile</button><button id="accountOrders">Orders</button><button id="accountWishlist">Wishlist</button><button id="signOut">Sign out</button></aside>
+ <div><form id="profileForm" class="form"><h2>Profile details</h2><label>Name<input name="name" value="${esc(u.name)}" required></label><label>Email<input name="email" type="email" value="${esc(u.email)}" required></label><button class="btn">Save changes</button></form>
+ <div class="account-card"><h3>Recent orders</h3><p class="meta" style="margin-top:8px">No orders yet. Your ritual is ready to begin.</p></div></div></div></div>`;
+}
+};
+
+function route(){
+ const h=location.hash.replace('#/','').split('/');const [a,b]=h;
+ $('#app').innerHTML=a==='shop'?views.shop(b):a==='p'?views.p(b):views[a]?views[a]():views.home();
+ $('#links').classList.remove('open');window.scrollTo(0,0);
+ const nl=$('#nl');if(nl)nl.onsubmit=e=>{e.preventDefault();nl.reset();toast('You are subscribed. Welcome to the ritual.')};
+ if(a==='checkout'){
+  const checkoutForm=$('#checkoutForm');
+  if(checkoutForm)checkoutForm.onsubmit=e=>{e.preventDefault();toast('Delivery details are valid. Payment is not connected in this demo.')};
+ }
+ if(a==='account'){
+  const login=$('#loginForm'),register=$('#registerForm');
+  if(login&&register){
+   $('#showLogin').onclick=()=>{login.hidden=false;register.hidden=true;$('#showLogin').setAttribute('aria-pressed','true');$('#showRegister').setAttribute('aria-pressed','false')};
+   $('#showRegister').onclick=()=>{login.hidden=true;register.hidden=false;$('#showLogin').setAttribute('aria-pressed','false');$('#showRegister').setAttribute('aria-pressed','true')};
+   login.onsubmit=async e=>{
+    e.preventDefault();const d=new FormData(login),email=d.get('email').trim().toLowerCase();
+    const u=users.find(x=>x.email===email);
+    if(!u||await passwordHash(d.get('password'),u.salt)!==u.password){toast('Email or password is incorrect.');return}
+    currentUser=u;localStorage.setItem(SESSION_KEY,u.id);updateAccountButton();location.hash='#/account';
+   };
+   register.onsubmit=async e=>{
+    e.preventDefault();const d=new FormData(register),email=d.get('email').trim().toLowerCase();
+    if(users.some(u=>u.email===email)){toast('An account already exists for this email.');return}
+    const salt=bytesToHex(randomBytes()),password=await passwordHash(d.get('password'),salt);
+    const u={id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())),name:d.get('name').trim(),email,password,salt};
+    users.push(u);saveUsers();currentUser=u;localStorage.setItem(SESSION_KEY,u.id);updateAccountButton();toast('Your SOLEYA account is ready.');location.hash='#/account';
+   };
+  }
+  if($('#profileForm')){
+   $('#profileForm').onsubmit=e=>{
+    e.preventDefault();const d=new FormData(e.target),email=d.get('email').trim().toLowerCase();
+    if(users.some(u=>u.email===email&&u.id!==currentUser.id)){toast('That email is already in use.');return}
+    currentUser.name=d.get('name').trim();currentUser.email=email;
+    users=users.map(u=>u.id===currentUser.id?currentUser:u);saveUsers();updateAccountButton();toast('Profile updated.');
+   };
+   $('#signOut').onclick=()=>{currentUser=null;localStorage.removeItem(SESSION_KEY);updateAccountButton();toast('Signed out.');location.hash='#/account'};
+   $('#accountOrders').onclick=()=>toast('No orders yet.');
+   $('#accountWishlist').onclick=()=>toast(wish.size?`${wish.size} saved product${wish.size===1?'':'s'}.`:'No saved products yet.');
+  }
+ }
+}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600)}
+function add(id,n=1){const l=cart.find(x=>x.id===id);l?l.n=Math.min(10,l.n+n):cart.push({id,n});draw();toast('Added to your bag.')}
+function draw(){
+ const tot=cart.reduce((s,l)=>s+l.n,0);$('#count').textContent=tot;
+ $('#sub').textContent=money(cart.reduce((s,l)=>s+l.n*P.find(p=>p.id===l.id).price,0));
+ $('#lines').innerHTML=cart.length?cart.map(l=>{const p=P.find(x=>x.id===l.id);return `<div class="line"><div class="th" style="background:${p.bg}">${bottle(p.cap)}</div>
+ <div><strong>${p.name}</strong><div class="meta">${p.size}</div><div class="qty" style="margin:6px 0"><button data-q="${p.id}:-1" aria-label="Decrease">−</button><span>${l.n}</span><button data-q="${p.id}:1" aria-label="Increase">+</button></div><button class="rm" data-rm="${p.id}">Remove</button></div>
+ <strong>${money(p.price*l.n)}</strong></div>`}).join(''):`<div class="empty"><h3>Your bag is empty</h3><p style="margin:8px auto 16px">Find your first ritual in the shop.</p><a class="btn" href="#/shop" onclick="bag(false)">Shop all</a></div>`;
+ $('#checkout').disabled=!cart.length;
+}
+function bag(o){$('#drawer').classList.toggle('open',o);$('#scrim').classList.toggle('open',o);$('#drawer').setAttribute('aria-hidden',!o)}
+document.addEventListener('click',e=>{
+ const t=e.target.closest('button');if(!t)return;
+ if(t.dataset.add)add(t.dataset.add);
+ if(t.dataset.w){e.preventDefault();const i=t.dataset.w;wish.has(i)?wish.delete(i):wish.add(i);const on=wish.has(i);t.setAttribute('aria-pressed',on);t.textContent=on?'♥':'♡';toast(on?'Saved to your wishlist.':'Removed from your wishlist.')}
+ if(t.dataset.q){const[i,d]=t.dataset.q.split(':');const l=cart.find(x=>x.id===i);l.n+=+d;if(l.n<1)cart=cart.filter(x=>x!==l);draw()}
+ if(t.dataset.rm){cart=cart.filter(x=>x.id!==t.dataset.rm);draw()}
+});
+$('#bagBtn').onclick=()=>bag(true);$('#closeBag').onclick=$('#scrim').onclick=()=>bag(false);
+$('#accountBtn').onclick=()=>location.hash='#/account';
+$('#checkout').onclick=()=>{bag(false);location.hash='#/checkout'};
+$('#searchBtn').onclick=()=>{$('#searchbar').classList.toggle('open');$('#q').focus()};
+$('#q').oninput=e=>{query=e.target.value;if(!location.hash.startsWith('#/shop'))location.hash='#/shop';else window.relist&&window.relist()};
+$('#menuBtn').onclick=()=>{const o=$('#links').classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',o)};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')bag(false)});
+window.addEventListener('hashchange',route);updateAccountButton();route();draw();
+</script>
+</body>
+</html>
